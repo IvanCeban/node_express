@@ -1,0 +1,26 @@
+<h2>Todos page</h2>
+
+{{#if todos.length}}
+    <ul>
+        {{#each todos}}
+            <li class="todo">
+                <form action="/complete" method="post">
+                    <label>
+                        {{#if completed}}
+                            <input type="checkbox" checked name="completed">
+                            <span class="completed">{{title}}</span>
+                        {{else}}
+                            <input type="checkbox" name="completed">
+                            <span>{{title}}</span>
+                        {{/if}}
+                    <!--    Тут будем хранить id данной записи который сможем передавать при запросе на сервер-->
+                        <input type="hidden" value="{{_id}}" name="id">
+                        <button class="btn btn-small" type="submit">Save</button>
+                    </label>
+                </form>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>No todos at the moment</p>
+{{/if}}
